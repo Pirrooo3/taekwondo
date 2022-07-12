@@ -26,7 +26,6 @@ connection.connect();*/
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
-
 const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 3050;

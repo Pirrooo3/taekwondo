@@ -36,7 +36,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // MySql
-const connection = mysql.createConnection(
+/*const connection = mysql.createConnection(
   process.env.DB_NAME,
   process.env.DB_USER,
   process.env.DB_PW,
@@ -46,7 +46,7 @@ const connection = mysql.createConnection(
   password: '',
   database: 'historia',
   port: '3307'
-});
+});*/
 
 // Route
 app.get('/', (req, res) => {

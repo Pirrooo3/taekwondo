@@ -36,26 +36,16 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // MySql
-/*const connection = mysql.createConnection(
+const connection = mysql.createConnection(
   process.env.DB_NAME,
   process.env.DB_USER,
   process.env.DB_PW,
   {
-  host: 'localhost',
+  host: '192.168.1.80',
   user: 'root',
   password: '',
   database: 'historia',
   port: '3307'
-});*/
-
-const connection = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PW,
-  {
-    host: 'localhost',
-    dialect: 'mysql',
-    port: 3307,
 });
 
 // Route

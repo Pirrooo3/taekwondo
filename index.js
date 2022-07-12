@@ -121,6 +121,6 @@ app.delete('/delete/:id', (req, res) => {
   if (error) throw error;
   console.log('Database server running!');
 });
-
-app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));*/
+*/
+app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));
 

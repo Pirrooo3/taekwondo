@@ -50,6 +50,10 @@ app.get('/', (req, res) => {
   res.send('Welcome to my API!');
 });
 
+app.get('/a', (req, res) => {
+  res.send('Welcomeasfdasdf to my API!');
+});
+
 // all customers
 app.get('/sucesos', (req, res) => {
   const sql = 'SELECT * FROM sucesos2';

@@ -38,12 +38,13 @@ app.use(cors());
 // MySql
 const connection = mysql.createConnection(
   {
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'historia',
-  port: '3307'
-});
+    host: 'containers-us-west-65.railway.app',
+    user: 'root',
+    password: '2ppNRIAhmzzHN4BPeMzl',
+    database: 'railway',
+    port: '7616',
+    name: 'mysql://${{ MYSQLUSER }}:${{ MYSQLPASSWORD }}@${{ MYSQLHOST }}:${{ MYSQLPORT }}/${{ MYSQLDATABASE }}'
+  });
 
 // Route
 app.get('/', (req, res) => {
@@ -56,7 +57,7 @@ app.get('/a', (req, res) => {
 
 // all customers
 app.get('/sucesos', (req, res) => {
-  const sql = 'SELECT * FROM sucesos2';
+  const sql = 'SELECT * FROM tabla';
 
   connection.query(sql, (error, results) => {
     if (error) throw error;
@@ -70,7 +71,7 @@ app.get('/sucesos', (req, res) => {
 
 app.get('/sucesos/:id', (req, res) => {
   const { id } = req.params;
-  const sql = `SELECT * FROM sucesos2 WHERE id = ${id}`;
+  const sql = `SELECT * FROM tabla WHERE id = ${id}`;
   connection.query(sql, (error, result) => {
     if (error) throw error;
 

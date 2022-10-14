@@ -49,8 +49,8 @@ const connection = mysql.createConnection(
     user: DB_USER,
     password: DB_PASSWORD,
     database: DB_DATA,
-    port: DB_PORT,
-    name: DB_NAME
+    port: DB_PORT
+ //   name: DB_NAME
   });
 
 // Route

@@ -64,7 +64,7 @@ app.get('/a', (req, res) => {
 
 // all customers
 app.get('/sucesos', (req, res) => {
-  const sql = 'SELECT * FROM tabla';
+  const sql = 'SELECT * FROM Instructores';
 
   connection.query(sql, (error, results) => {
     if (error) throw error;

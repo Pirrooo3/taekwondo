@@ -24,6 +24,18 @@ app.get('/', (req, res) => {
   res.send('Welcome to my API!');
 });
 
+app.get('/tablas', (req, res) => {
+  const sql = 'SELECT table_name AS nombre FROM information_schema.tables WHERE table_schema = "datos"';
+  connection.query(sql, (error, results) => {
+    if (error) throw error;
+    if (results.length > 0) {
+      res.json(results);
+    } else {
+      res.send('Not result');
+    }
+  });
+});
+
 
 // all customers
 app.get('/sucesos', (req, res) => {
@@ -38,6 +50,7 @@ app.get('/sucesos', (req, res) => {
     }
   });
 });
+
 
 app.get('/tabla/:tabla', (req, res) => {
   const { tabla } = req.params;
@@ -102,5 +115,5 @@ app.delete('/delete/:id', (req, res) => {
   });
 });
 
-app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));
+app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}, para acceder vaya al sitio: http://localhost:3050/`));
 

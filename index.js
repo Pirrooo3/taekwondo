@@ -1,28 +1,3 @@
-/*const bodyParser = require("body-parser");
-const express = require("express");
-const app = express();
-const PORT = process.env.PORT || 3050;
-
-app.get('/', function (req, res) {
-    res.send('Saludos desde express');
-  });
-
-app.listen(3000, () => {
- console.log("El servidor está inicializado en el puerto 3000");
-});
-
-//app.use(bodyParser.json());
-
-var mysql      = require('mysql');
-const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'sucesos2'
-});
-
-connection.connect();*/
-
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
@@ -35,36 +10,38 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const DB_HOST = process.env.DB_HOST || 'localhost';
-const DB_USER = process.env.DB_USER || 'root';
-const DB_PASSWORD = process.env.DB_PASSWORD || '';
-const DB_DATA = process.env.DB_DATA || 'historia';
-const DB_PORT = process.env.DB_PORT || 3050;
-const DB_NAME = process.env.DB_NAME || '';
-
-// MySql
-const connection = mysql.createConnection(
-  {
-    host: DB_HOST,
-    user: DB_USER,
-    password: DB_PASSWORD,
-    database: DB_DATA,
-    port: DB_PORT,
-    name: DB_NAME
-  });
+  const connection = mysql.createPool(
+    {
+      database: "datos",
+      user: "bxjggkti68y4fpvz96rg",
+      host: "eu-central.connect.psdb.cloud",
+      password: "pscale_pw_AhhI0ddRj7TppDbQXI4y3qBA4MzFmH0TMAfDAmybPH4",
+      ssl: {rejectUnauthorized: false}
+    });
 
 // Route
 app.get('/', (req, res) => {
   res.send('Welcome to my API!');
 });
 
-app.get('/a', (req, res) => {
-  res.send('Welcomeasfdasdf to my API!');
-});
 
 // all customers
 app.get('/sucesos', (req, res) => {
-  const sql = 'SELECT * FROM Instructores';
+  const sql = 'SELECT * FROM cvagueda';
+
+  connection.query(sql, (error, results) => {
+    if (error) throw error;
+    if (results.length > 0) {
+      res.json(results);
+    } else {
+      res.send('Not result');
+    }
+  });
+});
+
+app.get('/tabla/:tabla', (req, res) => {
+  const { tabla } = req.params;
+  const sql = `SELECT * FROM ${tabla}`;
 
   connection.query(sql, (error, results) => {
     if (error) throw error;
@@ -125,11 +102,5 @@ app.delete('/delete/:id', (req, res) => {
   });
 });
 
-// Check connect
-/*connection.connect(error => {
-  if (error) throw error;
-  console.log('Database server running!');
-});
-*/
 app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));
 

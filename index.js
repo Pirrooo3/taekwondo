@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to my API!');
 });
 
+
 app.get('/tablas', (req, res) => {
   const sql = 'SELECT table_name AS nombre FROM information_schema.tables WHERE table_schema = "datos"';
   connection.query(sql, (error, results) => {
